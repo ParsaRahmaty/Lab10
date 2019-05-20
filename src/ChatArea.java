@@ -1,7 +1,7 @@
 import javax.swing.*;
 
 public class ChatArea extends JTextArea {
-    private static final int ROWS = 10, COLUMNS = 30;
+    private static final int ROWS = 10, COLUMNS = 20;
     private static int currentPos;
 
     public ChatArea() {

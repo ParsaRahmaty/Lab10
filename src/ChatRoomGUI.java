@@ -16,7 +16,9 @@ public class ChatRoomGUI extends JFrame{
         ChatArea chatBox = new ChatArea();
         this.add(new JScrollPane(chatBox), BorderLayout.CENTER);
         chatBox.addMessage("Parsa", "Are you working?");
-        chatBox.addMessage("Program", "Why do I always have to do all the work, mr. \"Programmer\"???");
+        chatBox.addMessage("Program", "Why do I always have to do all the work, mr. \"Programmer\"??? huh? huh? huh??????????????????? HUUUUUH????");
+        MessageArea messageArea = new MessageArea();
+        this.add(messageArea, BorderLayout.PAGE_END);
         this.setVisible(true);
     }
 }
