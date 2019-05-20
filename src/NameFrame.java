@@ -5,8 +5,8 @@ public class NameFrame extends JFrame {
     private static final String BTN_TXT = " Start Chatting ...";
     private static final String LABEL_TXT = " Choose Your UserName ";
     private static final int WIDTH = 300, HEIGHT = 100;
-    JTextField textField;
-    JButton btn;
+    private JTextField textField;
+    private JButton btn;
 
     public NameFrame() throws HeadlessException {
         super();
