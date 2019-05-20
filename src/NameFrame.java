@@ -19,9 +19,9 @@ public class NameFrame extends JFrame {
         JLabel label = new JLabel("Choose Your UserName");
         add(label, BorderLayout.PAGE_START);
         textField = new JTextField();
-        add(textField, BorderLayout.CENTER);
         btn = new JButton(LABEL_TXT);
         add(btn, BorderLayout.PAGE_END);
+        add(textField, BorderLayout.CENTER);
         setVisible(true);
     }
 }
