@@ -1,5 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class ChatRoomGUI extends JFrame{
     private final String WINDOWS_TITLE = "AUT Chat Room";
@@ -8,6 +12,8 @@ public class ChatRoomGUI extends JFrame{
     private ChatArea chatBox = new ChatArea();
     private MessageArea messageArea = new MessageArea();
     private ParticipantsArea participantsArea = new ParticipantsArea();
+    private String username;
+    private NewMessageListener listener = null;
 
     public ChatRoomGUI() {
         super();
@@ -17,13 +23,26 @@ public class ChatRoomGUI extends JFrame{
         this.setSize(WIDTH, HEIGHT);
         this.setLocation(X, Y);
         this.add(new JScrollPane(chatBox), BorderLayout.CENTER);
-        chatBox.addMessage("Parsa", "Are you working?");
-        chatBox.addMessage("Program", "Why do I always have to do all the work, mr. \"Programmer\"??? huh? huh? huh??????????????????? HUUUUUH????");
         this.add(messageArea, BorderLayout.PAGE_END);
         this.add(participantsArea, BorderLayout.WEST);
-        participantsArea.addUser("Parsa");
-        participantsArea.addUser("Pedram");
+        addNewParticipant(username);
+        messageArea.getButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                listener.newMessage(messageArea.getTextField().getText());
+            }
+        });
         this.setVisible(true);
+    }
+
+    public ChatRoomGUI(String username) {
+        this();
+        this.username = username;
+        addNewParticipant(username);
+    }
+
+    public void addNewMessageListener(NewMessageListener listener){
+        this.listener = listener;
     }
 
     public void addNewMessage(String username, String message) {
@@ -36,5 +55,28 @@ public class ChatRoomGUI extends JFrame{
 
     public void removeParticipant(String username) {
         participantsArea.getModel().removeElement(username);
+    }
+
+    private class AbstractMouseListener implements MouseListener {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            messageArea.getTextField().setText("");
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+            messageArea.getTextField().setText("");
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+            messageArea.getTextField().setText("Write your message...");
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {}
+
+        @Override
+        public void mouseExited(MouseEvent e) {}
     }
 }

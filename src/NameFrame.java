@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class NameFrame extends JFrame {
     private static final String BTN_TXT = " Start Chatting ...";
@@ -19,7 +21,14 @@ public class NameFrame extends JFrame {
         JLabel label = new JLabel("Choose Your UserName");
         add(label, BorderLayout.PAGE_START);
         textField = new JTextField();
+        textField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
         btn = new JButton(LABEL_TXT);
+        btn.addActionListener(textField.getActionListeners()[0]);
         add(btn, BorderLayout.PAGE_END);
         add(textField, BorderLayout.CENTER);
         setVisible(true);
